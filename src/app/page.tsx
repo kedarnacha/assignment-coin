@@ -32,7 +32,7 @@ const items = [
 ];
 
 const fetchWorkers = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/workers`);
+  const res = await fetch(`/api/workers`);
   if (!res.ok) {
     throw new Error(`Failed to fetch workers: ${res.statusText}`);
   }
@@ -40,7 +40,7 @@ const fetchWorkers = async () => {
 };
 
 const fetchFeatures = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/features`);
+  const res = await fetch(`/api/features`);
   if (!res.ok) {
     throw new Error(`Failed to fetch workers: ${res.statusText}`);
   }
@@ -48,7 +48,7 @@ const fetchFeatures = async () => {
 };
 
 const fetchSlider = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/slides`);
+  const res = await fetch(`/api/slides`);
   if (!res.ok) {
     throw new Error(`Failed to fetch workers: ${res.statusText}`);
   }
