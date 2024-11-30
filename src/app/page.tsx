@@ -56,13 +56,13 @@ const fetchSlider = async () => {
 };
 
 const Page = async () => {
-  const workersRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/workers`);
+  const workersRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/workers`);
   const workers = await workersRes.json();
 
-  const featuresRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/features`);
+  const featuresRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/features`);
   const features = await featuresRes.json();
 
-  const sliderRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/slides`);
+  const sliderRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/slides`);
   const slider = await sliderRes.json();
 
   return (
