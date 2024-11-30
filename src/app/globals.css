@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
+  --background: linear-gradient(151.17deg, #26c2b9 8.69%, #288be7 126.06%);
   --foreground: #171717;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: linear-gradient(151.17deg, #26c2b9 8.69%, #288be7 126.06%);
     --foreground: #ededed;
   }
 }
@@ -24,4 +24,20 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.motion-div {
+  will-change: transform, opacity;
+}
+
+.swiper-slide-shadow-right {
+  background-image: linear-gradient(to right, rgba(0,0,0, 0.2), rgba(0,0,0, 0)) !important;
+}
+
+.swiper-slide-shadow-left {
+  background-image: linear-gradient(to left, rgba(0,0,0, 0.2), rgba(0,0,0, 0)) !important;
+}
+
+.swiper-button-next, .swiper-button-prev{
+  color: white !important;
 }

@@ -1,101 +1,139 @@
+"use client";
+import { Poppins } from "@next/font/google";
+import { useEffect, useState } from "react";
+import Card from "./components/molecules/Card";
+import FadeInTitle from "./components/animation/FadeIn";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCoverflow, Navigation, Pagination } from "swiper/modules";
+import FadeInUpTitle from "./components/animation/FadeInUp";
+import FadeInThree from "./components/animation/FadeInThree";
+import { motion } from "framer-motion";
+import Slider from "./components/animation/Slider";
+import Footer from "./components/atoms/Footer";
+import Navbar from "./components/atoms/Navbar";
 import Image from "next/image";
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import Tooltip from "./components/molecules/Swiper";
 
-export default function Home() {
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-poppins",
+});
+
+const items = [
+  { id: 1, label: "한국어 능력" },
+  { id: 2, label: "업무 수행 능력" },
+  { id: 3, label: "검업 여부" },
+  { id: 4, label: "평판 조회" },
+];
+
+const fetchWorkers = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/workers`);
+  if (!res.ok) {
+    throw new Error(`Failed to fetch workers: ${res.statusText}`);
+  }
+  return res.json();
+};
+
+const fetchFeatures = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/features`);
+  if (!res.ok) {
+    throw new Error(`Failed to fetch workers: ${res.statusText}`);
+  }
+  return res.json();
+};
+
+const fetchSlider = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/slides`);
+  if (!res.ok) {
+    throw new Error(`Failed to fetch workers: ${res.statusText}`);
+  }
+  return res.json();
+};
+
+const Page = async () => {
+  const workersRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/workers`);
+  const workers = await workersRes.json();
+
+  const featuresRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/features`);
+  const features = await featuresRes.json();
+
+  const sliderRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/slides`);
+  const slider = await sliderRes.json();
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className={`${poppins.variable} font-sans`}>
+      <Navbar />
+      <div className="font-sans min-h-screen px-4 justify-center items-center grid grid-cols-1 md:grid-cols-4">
+        <div className="w-full px-8 col-span-1 md:col-span-2 space-y-3 flex flex-col justify-center mr-8">
+          <FadeInTitle />
+          <FadeInUpTitle
+            text1="최고의 실력을 가진"
+            text2="외국인 인재를 찾고 계신가요?"
+            className="text-3xl md:text-5xl font-semibold"
+          />
+          <FadeInUpTitle
+            text1="법률 및 인사관리 부담없이"
+            text2="1주일 이내에 원격으로 채용해보세요."
+            className="text-sm md:text-xl"
+          />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="hidden md:block space-y-2 py-2"
           >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <a href="#" className="text-white text-lg underline">
+              개발자가 필요하신가요?
+            </a>
+          </motion.div>
+          <FadeInThree features={features} />
+          <Slider slider={slider} />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+
+        <div className="w-full md:col-span-2">
+          <Tooltip workers={workers} />
+        </div>
+        <div className="block md:hidden p-4 rounded-lg text-white">
+          <div className="grid grid-cols-2 gap-4">
+            {items.map((item) => (
+              <label
+                key={item.id}
+                className="flex items-center space-x-2 cursor-pointer"
+              >
+                <Image
+                    src="/assets/check.svg"
+                    alt="Icon"
+                    width={24}
+                    height={24}
+                    className="w-6 h-6"
+                  />
+                <span>{item.label}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="block md:hidden space-y-2 pb-8 px-8 relative"
         >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <a
+            href="#"
+            className="text-yellow-300 md:text-white text-sm md:text-lg underline"
+          >
+            개발자가 필요하신가요?
+          </a>
+        </motion.div>
+      </div>
+      <Footer />
     </div>
   );
-}
+};
+
+export default Page;
