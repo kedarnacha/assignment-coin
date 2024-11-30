@@ -32,7 +32,7 @@ const items = [
 ];
 
 const fetchWorkers = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/workers`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/workers`);
   if (!res.ok) {
     throw new Error(`Failed to fetch workers: ${res.statusText}`);
   }
@@ -40,7 +40,7 @@ const fetchWorkers = async () => {
 };
 
 const fetchFeatures = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/features`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/features`);
   if (!res.ok) {
     throw new Error(`Failed to fetch workers: ${res.statusText}`);
   }
@@ -48,22 +48,36 @@ const fetchFeatures = async () => {
 };
 
 const fetchSlider = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/slides`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/slides`);
   if (!res.ok) {
     throw new Error(`Failed to fetch workers: ${res.statusText}`);
   }
   return res.json();
 };
 
-const Page = async () => {
-  const workersRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/workers`);
-  const workers = await workersRes.json();
+const Page = () => {
+  const [workers, setWorkers] = useState<any[]>([]);
+  const [features, setFeatures] = useState<any[]>([]);
+  const [slider, setSlider] = useState<any[]>([]);
 
-  const featuresRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/features`);
-  const features = await featuresRes.json();
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const [workerData, featureData, sliderData] = await Promise.all([
+          fetchWorkers(),
+          fetchFeatures(),
+          fetchSlider(),
+        ]);
+        setWorkers(workerData);
+        setFeatures(featureData);
+        setSlider(sliderData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  const sliderRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/slides`);
-  const slider = await sliderRes.json();
+    getData();
+  }, []);
 
   return (
     <div className={`${poppins.variable} font-sans`}>
