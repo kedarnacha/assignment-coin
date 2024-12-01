@@ -109,7 +109,7 @@ const Page = () => {
           <Slider slider={slider} />
         </div>
 
-        <div className="w-full lg:col-span-2">
+        <div className="w-full overflow-hidden lg:col-span-2">
           <Tooltip workers={workers} />
         </div>
         <div className="block lg:hidden p-4 rounded-lg text-white">
