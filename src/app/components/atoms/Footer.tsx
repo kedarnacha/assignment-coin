@@ -29,14 +29,14 @@ const Footer = () => {
   return (
     <footer className="relative w-full bg-white text-black flex items-center justify-center py-16">
       <div className="mx-auto w-full max-w-7xl px-8">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          <div className="text-center md:text-start md:col-span-1">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+          <div className="text-center lg:text-start lg:col-span-1">
             <Image
               src="/assets/logo.svg"
               alt={`Logo Icon`}
               width={60}
               height={50}
-              className="mx-auto md:mx-0 w-36 h-6"
+              className="mx-auto lg:mx-0 w-36 h-6"
             />
             <p className="mt-2">
               우리는 국가의 장벽을 넘어 최고의 인재를 매칭해드립니다.
@@ -47,7 +47,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2  md:col-span-2 lg:grid-cols-4 gap-4 justify-center">
+          <div className="grid grid-cols-2  lg:col-span-2 lg:grid-cols-4 gap-4 justify-center">
           {footerData.map((item, index) => (
               <div
                 key={index}
@@ -80,7 +80,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-4 gap-8 text-sm text-start">
+        <div className="mt-8 grid grid-cols-1 lg:grid-cols-4 gap-8 text-sm text-start">
           <div className="flex flex-col space-y-1">
             <p className="font-medium">상호명</p>
             <p>하이퍼하이어</p>

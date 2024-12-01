@@ -43,7 +43,7 @@ const Slider: React.FC<SliderProps> = ({ slider }) => {
   };
 
   return (
-    <div className="overflow-hidden pt-8 relative w-[330px] hidden md:block">
+    <div className="overflow-hidden pt-8 relative w-[330px] hidden lg:block">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}

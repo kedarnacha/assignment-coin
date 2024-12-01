@@ -31,7 +31,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                     className="w-36 h-6"
                 />
 
-                <div className="md:hidden">
+                <div className="lg:hidden">
                     <button 
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         className="text-white focus:outline-none"
@@ -54,7 +54,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                 </div>
             </div>
 
-            <div className="hidden md:flex w-full items-center justify-start">
+            <div className="hidden lg:flex w-full items-center justify-start">
                 <div className="w-1/3 flex items-center justify-center">
                     <div className="relative">
                         <button
@@ -94,14 +94,14 @@ const Navbar: React.FC<NavbarProps> = () => {
                 </div>
             </div>
 
-            <div className="hidden md:flex w-1/3 justify-end">
+            <div className="hidden lg:flex w-1/3 justify-end">
                 <button className="px-6 py-2 bg-white hover:text-white text-blue-500 rounded-lg hover:bg-blue-500">
                     문의하기
                 </button>
             </div>
 
             {isMobileMenuOpen && (
-                <div className="absolute top-full left-0 w-full bg-gray-500 bg-opacity-80 md:hidden">
+                <div className="absolute top-full left-0 w-full bg-gray-500 bg-opacity-80 lg:hidden">
                     <div className="flex flex-col items-center py-6 space-y-4">
                         <div className="relative w-full text-center">
                             <button

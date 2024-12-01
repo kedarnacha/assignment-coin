@@ -11,7 +11,7 @@ interface FadeInThreeProps {
 
 const FadeInThree: React.FC<FadeInThreeProps> = ({ features }) => {
   return (
-    <div className="hidden md:grid md:grid-cols-3">
+    <div className="hidden lg:grid lg:grid-cols-3">
       {features.map((feature, index) => (
         <motion.div
           key={index}

@@ -82,8 +82,8 @@ const Page = () => {
   return (
     <div className={`${poppins.variable} font-sans`}>
       <Navbar />
-      <div className="font-sans min-h-screen px-4 justify-center items-center grid grid-cols-1 md:grid-cols-4">
-        <div className="w-full px-8 col-span-1 md:col-span-2 space-y-3 flex flex-col justify-center mr-8">
+      <div className="font-sans min-h-screen px-4 justify-center items-center grid grid-cols-1 lg:grid-cols-4">
+        <div className="w-full px-8 col-span-1 lg:col-span-2 space-y-3 flex flex-col justify-center mr-8">
           <FadeInTitle />
           <FadeInUpTitle
             text1="최고의 실력을 가진"
@@ -99,7 +99,7 @@ const Page = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className="hidden md:block space-y-2 py-2"
+            className="hidden lg:block space-y-2 py-2"
           >
             <a href="#" className="text-white text-lg underline">
               개발자가 필요하신가요?
@@ -109,10 +109,10 @@ const Page = () => {
           <Slider slider={slider} />
         </div>
 
-        <div className="w-full md:col-span-2">
+        <div className="w-full lg:col-span-2">
           <Tooltip workers={workers} />
         </div>
-        <div className="block md:hidden p-4 rounded-lg text-white">
+        <div className="block lg:hidden p-4 rounded-lg text-white">
           <div className="grid grid-cols-2 gap-4">
             {items.map((item) => (
               <label
@@ -126,7 +126,7 @@ const Page = () => {
                     height={24}
                     className="w-6 h-6"
                   />
-                <span>{item.label}</span>
+                <span className="md:text-lg">{item.label}</span>
               </label>
             ))}
           </div>
@@ -135,11 +135,11 @@ const Page = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="block md:hidden space-y-2 pb-8 px-8 relative"
+          className="block lg:hidden space-y-2 pb-8 px-8 relative"
         >
           <a
             href="#"
-            className="text-yellow-300 md:text-white text-sm md:text-lg underline"
+            className="text-yellow-300 lg:text-white text-sm md:text-lg underline"
           >
             개발자가 필요하신가요?
           </a>
